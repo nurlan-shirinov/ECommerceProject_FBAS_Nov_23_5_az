@@ -1,4 +1,7 @@
-﻿namespace ECommerce.Domain.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace ECommerce.Domain.Entities;
 
 public partial class AlphabeticalListOfProduct
 {

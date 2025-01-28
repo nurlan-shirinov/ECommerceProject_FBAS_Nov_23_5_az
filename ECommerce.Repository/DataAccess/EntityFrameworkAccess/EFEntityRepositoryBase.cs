@@ -13,7 +13,6 @@ public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEnti
         addedEntity.State = EntityState.Added;
         //context.Add(addedEntity);
         context.SaveChanges();
-
     }
 
     public void Delete(TEntity entity)

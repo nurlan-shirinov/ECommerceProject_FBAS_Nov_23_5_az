@@ -1,3 +1,5 @@
+using ECommerce.Application.Abstract;
+using ECommerce.Application.Concrete;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Context;
 using ECommerce.DataAccess.Implementation;
@@ -9,11 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICategoryDal, EFCategoryDal>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 var conn = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<NorthDbContext>(opt =>
+builder.Services.AddDbContext<NorthWindDbContext>(opt =>
 {
     opt.UseSqlServer(conn);
 });

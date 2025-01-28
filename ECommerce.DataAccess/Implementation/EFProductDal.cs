@@ -5,7 +5,7 @@ using ECommerce.Repository.DataAccess.EntityFrameworkAccess;
 
 namespace ECommerce.DataAccess.Implementation;
 
-public class EFCategoryDal : EFEntityRepositoryBase<Category, NorthWindDbContext>, ICategoryDal
+public class EFProductDal : EFEntityRepositoryBase<Product , NorthWindDbContext> , IProductDal
 {
 
 }

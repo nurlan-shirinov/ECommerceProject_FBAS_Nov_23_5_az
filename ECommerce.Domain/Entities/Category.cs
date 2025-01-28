@@ -2,7 +2,7 @@
 
 namespace ECommerce.Domain.Entities;
 
-public partial class Category : IEntity
+public partial class Category:IEntity
 {
     public int CategoryId { get; set; }
 

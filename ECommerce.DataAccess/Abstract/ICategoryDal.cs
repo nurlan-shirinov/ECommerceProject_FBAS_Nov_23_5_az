@@ -5,5 +5,4 @@ namespace ECommerce.DataAccess.Abstract;
 
 public interface ICategoryDal : IEntityRepository<Category>
 {
-
 }

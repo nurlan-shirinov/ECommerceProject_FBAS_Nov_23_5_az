@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.DataAccess.Context;
 
-public partial class NorthDbContext : DbContext
+public partial class NorthWindDbContext : DbContext
 {
-    public NorthDbContext()
+    public NorthWindDbContext()
     {
     }
 
-    public NorthDbContext(DbContextOptions<NorthDbContext> options) : base(options)
+    public NorthWindDbContext(DbContextOptions<NorthWindDbContext> options)
+        : base(options)
     {
     }
 
@@ -69,7 +70,7 @@ public partial class NorthDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=NorthWindDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\ProjectModels;Initial Catalog=NorthWindDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
