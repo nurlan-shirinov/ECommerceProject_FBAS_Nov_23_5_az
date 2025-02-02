@@ -3,6 +3,7 @@ using ECommerce.Application.Concrete;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Context;
 using ECommerce.DataAccess.Implementation;
+using ECommerce.WebUI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSession();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<ICartSessionService , CartSessionService>();
+
 builder.Services.AddScoped<ICategoryDal, EFCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 builder.Services.AddScoped<IProductDal, EFProductDal>();
 builder.Services.AddScoped<IProductService, ProductService>();
@@ -37,7 +44,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Product}/{action=Index}/{id?}");
