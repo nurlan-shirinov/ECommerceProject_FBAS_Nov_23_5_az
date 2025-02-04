@@ -11,7 +11,8 @@ public class CartService : ICartService
         CartLine cartLine = cart.CartLines.FirstOrDefault(cl=>cl.Product.ProductId==product.ProductId);
         if (cartLine != null)
             cartLine.Quantity++;
-        cart.CartLines.Add(new CartLine { Quantity=1 , Product  = product });
+        else
+            cart.CartLines.Add(new CartLine { Quantity=1 , Product  = product });
             
     }
 

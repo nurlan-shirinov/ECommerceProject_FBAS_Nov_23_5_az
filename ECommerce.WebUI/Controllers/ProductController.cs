@@ -1,11 +1,13 @@
 ﻿using ECommerce.Application.Abstract;
+using ECommerce.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.WebUI.Controllers;
 
-public class ProductController(IProductService productService) : Controller
+public class ProductController(IProductService productService , ICategoryService categoryService) : Controller
 {
     private readonly IProductService _productService = productService;
+    private readonly ICategoryService _categoryService = categoryService;
 
     public IActionResult Index(int page=1 , int categoryId=0)
     {
@@ -22,5 +24,21 @@ public class ProductController(IProductService productService) : Controller
             CurrentPage = page
         };
         return View(model);
+    }
+
+    [HttpGet]
+    public IActionResult Add()
+    {
+        var model = new ProductAddViewModel();
+        model.Product = new Product();
+        model.Categories = _categoryService.GetAll();
+        return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult Add(ProductAddViewModel model)
+    {
+        _productService.Add(model.Product);
+        return RedirectToAction("index");
     }
 }

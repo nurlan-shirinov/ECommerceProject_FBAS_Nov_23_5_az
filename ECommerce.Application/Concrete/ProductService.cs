@@ -6,7 +6,6 @@ namespace ECommerce.Application.Concrete;
 
 public class ProductService(IProductDal productDal) : IProductService
 {
-
     private readonly IProductDal _productDal = productDal;
 
     public void Add(Product product)
@@ -29,7 +28,6 @@ public class ProductService(IProductDal productDal) : IProductService
     {
         return _productDal.GetList(p => p.CategoryId == categoryId || categoryId==0);
     }
-
     public Product GetById(int id)
     {
         return _productDal.Get(p=>p.ProductId==id);
