@@ -13,7 +13,6 @@ public class CartService : ICartService
             cartLine.Quantity++;
         else
             cart.CartLines.Add(new CartLine { Quantity=1 , Product  = product });
-            
     }
 
     public List<CartLine> List(Cart cart)

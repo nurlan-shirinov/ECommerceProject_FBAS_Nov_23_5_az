@@ -7,7 +7,6 @@ namespace ECommerce.WebUI.Controllers;
 
 public class CartController(IProductService productService, ICartSessionService cartSessionService, ICartService cartService) : Controller
 {
-
     private readonly IProductService _productService = productService;
     private readonly ICartSessionService _cartSessionService = cartSessionService;
     private readonly ICartService _cartService = cartService;
@@ -48,7 +47,15 @@ public class CartController(IProductService productService, ICartSessionService 
     {
         var shippingDetailViewModel = new ShippingDetailsViewModel
         {
-            ShippingDetails = new ShippingDetails() { Address = string.Empty, Age = string.Empty, City = string.Empty, Email = string.Empty, Firstname = string.Empty, Lastname = string.Empty }
+            ShippingDetails = new ShippingDetails()
+            {
+                Address = string.Empty,
+                Age = string.Empty,
+                City = string.Empty,
+                Email = string.Empty,
+                Firstname = string.Empty,
+                Lastname = string.Empty
+            }
         };
         return View(shippingDetailViewModel);
     }
@@ -56,7 +63,7 @@ public class CartController(IProductService productService, ICartSessionService 
     [HttpPost]
     public IActionResult Complete(ShippingDetailsViewModel model)
     {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
             return View();
         TempData.Add("message", String.Format("Thamk you {0} , your order is in progress", model.ShippingDetails.Firstname));
         return View();
